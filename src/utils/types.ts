@@ -6,11 +6,24 @@ export enum TypeEnum {
   MVT = 'MVT',
 }
 
+export enum TypeUIEnum {
+  CLASSIC = 'Classic',
+  SERVER_SIDE = 'Server-side',
+  MVT = 'MVT',
+}
+
 export enum StatusEnum {
   DRAFT = 'DRAFT',
   ONLINE = 'ONLINE',
   PAUSED = 'PAUSED',
   STOPPED = 'STOPPED',
+}
+
+export enum StatusUIEnum {
+  DRAFT = 'Draft',
+  ONLINE = 'Online',
+  PAUSED = 'Paused',
+  STOPPED = 'Stopped',
 }
 
 export type SiteType = {
@@ -49,14 +62,16 @@ export type AppType = FC
 
 export type DashboardViewType = FC
 
-export type TestsTablePropsType = {
-  items: FetchJSONHookItemsType
-  sites: FetchJSONHookSitesType
-}
-
-interface TestsTableRowData extends TestType {
+export interface TestsTableRowData extends TestType {
   site: string
 }
+
+export type TestsTableRowsData = TestsTableRowData[]
+
+export type TestsTablePropsType = {
+  items: TestsTableRowsData
+}
+
 export type TestsTableRowPropsType = {
   data: TestsTableRowData
 }

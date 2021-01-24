@@ -11,6 +11,7 @@ const App: AppType = () => {
       <Switch>
         <Route exact path='/' render={() => <Dashboard/>}/>
         <Route exact path='/results/:testId' render={(props) => <Results id={props.match.params.testId}/>}/>
+        <Route exact path='/finalize/:testId' render={(props) => <Results id={props.match.params.testId}/>}/>
       </Switch>
     </Router>
   )

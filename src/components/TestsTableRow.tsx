@@ -1,8 +1,8 @@
 import React from 'react'
-import { composeRegularCaseString } from '../utils/format-tools'
-import { TestsTableRowPropsType, TestTableRowComponentType, TypeEnum } from '../utils/types'
+import { Link } from 'react-router-dom'
+import { StatusEnum, StatusUIEnum, TestsTableRowPropsType, TestTableRowComponentType, TypeEnum, TypeUIEnum } from '../utils/types'
 
-const getTrClassNameWithStatusModifier = (value: TypeEnum): string => {
+const getTrClassNameWithTypeModifier = (value: TypeEnum): string => {
   switch(value) {
     case 'CLASSIC':
       return 'tests-table__row tests-table__row--classic'
@@ -15,17 +15,37 @@ const getTrClassNameWithStatusModifier = (value: TypeEnum): string => {
   }
 }
 
+const getTdClassNameWithStatusModifier = (value: StatusEnum): string => {
+  switch(value) {
+    case 'PAUSED':
+      return 'tests-table__cell tests-table__column-status tests-table__column-status--paused'
+    case 'ONLINE':
+      return 'tests-table__cell tests-table__column-status tests-table__column-status--online'
+    case 'STOPPED':
+      return 'tests-table__cell tests-table__column-status tests-table__column-status--stopped'
+    default:
+      return 'tests-table__cell tests-table__column-status'
+  }
+}
+
 const TestsTableRow: TestTableRowComponentType = (props: TestsTableRowPropsType) => {
   const {data} = props
-  console.log(data)
   
   return (
-    <tr className={getTrClassNameWithStatusModifier(data.type)}>
-      <td className="tests-table__cell-name">{data.name}</td>
-      <td className="tests-table__cell-type">{composeRegularCaseString(data.type)}</td>
-      <td className="tests-table__cell-status">{composeRegularCaseString(data.status)}</td>
-      <td className="tests-table__cell-site">{data.site}</td>
-      <td className="tests-table__cell-link"><a href="#">Finalize</a></td>
+    <tr className={getTrClassNameWithTypeModifier(data.type)}>
+      <td className="tests-table__cell tests-table__column-name">{data.name}</td>
+      <td className="tests-table__cell tests-table__column-type">{TypeUIEnum[data.type]}</td>
+      <td className={getTdClassNameWithStatusModifier(data.status)}>{StatusUIEnum[data.status]}</td>
+      <td className="tests-table__cell tests-table__column-site">{data.site}</td>
+      {
+        data.status === StatusEnum.DRAFT
+          ? <td className="tests-table__cell tests-table__column-link">
+              <Link to={`/finalize/${data.id}`}>Finalize</Link>
+            </td>
+          : <td className="tests-table__cell tests-table__column-link">
+              <Link to={`/results/${data.id}`}>Results</Link>
+            </td>
+      }
     </tr>
   )
 }

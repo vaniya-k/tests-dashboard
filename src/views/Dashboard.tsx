@@ -2,11 +2,20 @@ import React from 'react'
 import TestsTable from '../components/TestsTable'
 import { fetchJSONHook }  from '../utils/hooks'
 import { SITES_API, TESTS_API } from '../utils/constants'
-import { DashboardViewType, FetchJSONHookItemsType, FetchJSONHookSitesType } from '../utils/types'
+import { DashboardViewType, SitesType, TestsType, TestType, TestsTableRowsData } from '../utils/types'
+import { getSiteString } from '../utils/format-tools'
 
 const Dashboard: DashboardViewType = () => {
   const [items, itemsRequestCycle] = fetchJSONHook(`${TESTS_API}`)
   const [sites, sitesRequestCycle] = fetchJSONHook(`${SITES_API}`)
+
+  let itemsToRender: TestsTableRowsData = []
+
+  if(items && sites) {
+    itemsToRender = (items as TestsType).map((item: TestType) => {
+      return {...item, site: getSiteString(item, (sites as SitesType))}
+    })
+  }
 
   return (
     <>
@@ -17,7 +26,7 @@ const Dashboard: DashboardViewType = () => {
         </div>
       </header>
       <main className="page-container page-main">
-        <TestsTable items={items as FetchJSONHookItemsType} sites={sites as FetchJSONHookSitesType} />
+        {itemsToRender.length !== 0 && <TestsTable items={itemsToRender} />}
       </main>
     </>
   ) 

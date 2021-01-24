@@ -1,4 +1,4 @@
-import { SitesType, StatusEnum, TestType, TypeEnum } from "./types"
+import { SitesType, TestType } from "./types"
 
 export const getSiteString = (item: TestType, sites: SitesType): string => {
   const index = sites.findIndex(site => site.id === item.siteId)
@@ -7,8 +7,4 @@ export const getSiteString = (item: TestType, sites: SitesType): string => {
   return url.hostname.startsWith('www.')
     ? url.hostname.replace('www.','')
     : url.hostname
-}
-
-export const composeRegularCaseString = (value: TypeEnum | StatusEnum): string => {
-  return `${value[0]}${value.slice(1).toLowerCase()}`
 }
