@@ -1,9 +1,7 @@
-import React, { FC } from 'react'
+import React from 'react'
+import { ResultsViewType, ResultsPropsType } from '../utils/types'
 
-type ResultsPropsType = { id: string }
-type ResultsType = FC<ResultsPropsType>
-
-const Results: ResultsType = (props: ResultsPropsType) => {
+const Results: ResultsViewType = (props: ResultsPropsType) => {
   const { id } = props
   return <div>Results {`${id}`}</div>
 }
