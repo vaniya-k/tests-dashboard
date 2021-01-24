@@ -93,20 +93,13 @@ body {
   &-label-icon {
     margin-left: 8px;
 
-    &--descending {
+    &--ascending {
       transform: rotate(180deg)
     }
   }
 
-  &-label-name {
+  &-label-wrapper {
     display: flex;
-    width: 46%;
-    padding-left: 15px;
-  }
-
-  &-name {
-    width: 46%;
-    padding-left: 15px;
   }
 
   &-status {
@@ -123,6 +116,11 @@ body {
     &--stopped {
       color: #fe4848
     }
+  }
+
+  &-name, &-label-name {
+    width: 46%;
+    padding-left: 15px;
   }
 
   &-type,

@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import { StatusEnum, StatusUIEnum, TestsTableRowPropsType, TestTableRowComponentType, TypeEnum, TypeUIEnum } from '../utils/types'
 
 const getTrClassNameWithTypeModifier = (value: TypeEnum): string => {
-  switch(value) {
-    case 'CLASSIC':
+  switch(TypeUIEnum[value]) {
+    case TypeUIEnum.CLASSIC:
       return 'tests-table__row tests-table__row--classic'
-    case 'MVT':
+    case TypeUIEnum.MVT:
       return 'tests-table__row tests-table__row--mvt'
-    case 'SERVER_SIDE':
+    case TypeUIEnum.SERVER_SIDE:
       return 'tests-table__row tests-table__row--server-side'
     default:
       return 'tests-table__row'
@@ -16,19 +16,19 @@ const getTrClassNameWithTypeModifier = (value: TypeEnum): string => {
 }
 
 const getTdClassNameWithStatusModifier = (value: StatusEnum): string => {
-  switch(value) {
-    case 'PAUSED':
+  switch(StatusUIEnum[value]) {
+    case StatusUIEnum.PAUSED:
       return 'tests-table__cell tests-table__column-status tests-table__column-status--paused'
-    case 'ONLINE':
+    case StatusUIEnum.ONLINE:
       return 'tests-table__cell tests-table__column-status tests-table__column-status--online'
-    case 'STOPPED':
+    case StatusUIEnum.STOPPED:
       return 'tests-table__cell tests-table__column-status tests-table__column-status--stopped'
     default:
       return 'tests-table__cell tests-table__column-status'
   }
 }
 
-const TestsTableRow: TestTableRowComponentType = (props: TestsTableRowPropsType) => {
+const TestsTableItemRow: TestTableRowComponentType = (props: TestsTableRowPropsType) => {
   const {data} = props
   
   return (
@@ -38,7 +38,7 @@ const TestsTableRow: TestTableRowComponentType = (props: TestsTableRowPropsType)
       <td className={getTdClassNameWithStatusModifier(data.status)}>{StatusUIEnum[data.status]}</td>
       <td className="tests-table__cell tests-table__column-site">{data.site}</td>
       {
-        data.status === StatusEnum.DRAFT
+        StatusUIEnum[data.status] === StatusUIEnum.DRAFT
           ? <td className="tests-table__cell tests-table__column-link">
               <Link to={`/finalize/${data.id}`}>Finalize</Link>
             </td>
@@ -50,4 +50,4 @@ const TestsTableRow: TestTableRowComponentType = (props: TestsTableRowPropsType)
   )
 }
 
-export default TestsTableRow
+export default TestsTableItemRow

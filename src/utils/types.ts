@@ -1,9 +1,27 @@
 import { FC } from "react"
 
+export enum SortOrderEnum {
+  DEFAULT = 'default',
+  ASCENDING = 'ascending',
+  DESCENDING = 'descending'
+}
+
+export enum SortCategoriesEnum {
+  NAME = 'name',
+  SITE = 'site',
+  TYPE = 'type',
+  STATUS = 'status'
+}
+
+export type SortParamsType = {
+  order: null | SortOrderEnum
+  category: null | SortCategoriesEnum
+}
+
 export enum TypeEnum {
-  CLASSIC = 'CLASSIC',
-  SERVER_SIDE = 'SERVER_SIDE',
-  MVT = 'MVT',
+  CLASSIC,
+  SERVER_SIDE,
+  MVT,
 }
 
 export enum TypeUIEnum {
@@ -13,10 +31,10 @@ export enum TypeUIEnum {
 }
 
 export enum StatusEnum {
-  DRAFT = 'DRAFT',
-  ONLINE = 'ONLINE',
-  PAUSED = 'PAUSED',
-  STOPPED = 'STOPPED',
+  ONLINE,
+  PAUSED,
+  STOPPED,
+  DRAFT
 }
 
 export enum StatusUIEnum {
@@ -68,6 +86,12 @@ export interface TestsTableRowData extends TestType {
 
 export type TestsTableRowsData = TestsTableRowData[]
 
+export type TestsTableSortControlTdPropsType = {
+  onSortParamsChange: () => void,
+  sortCategory: SortCategoriesEnum
+  sortParams: SortParamsType
+}
+
 export type TestsTablePropsType = {
   items: TestsTableRowsData
 }
@@ -75,6 +99,8 @@ export type TestsTablePropsType = {
 export type TestsTableRowPropsType = {
   data: TestsTableRowData
 }
+
+export type TestsTableSortControlTdComponentType = FC<TestsTableSortControlTdPropsType>
 
 export type TestTableComponentType = FC<TestsTablePropsType>
 
