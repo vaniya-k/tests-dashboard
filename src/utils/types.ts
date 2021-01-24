@@ -18,7 +18,7 @@ export type SiteType = {
   url: string
 }
 
-export type TestType = {
+export interface TestType {
   id: number
   name: string
   type: TypeEnum
@@ -28,12 +28,18 @@ export type TestType = {
 
 export type TestsType = TestType[]
 
-export type NetworkStatusType = {
+export type SitesType = SiteType[]
+
+export type RequestCycleType = {
   isLoading: boolean | null
   hasErroredOut: boolean | null
 }
 
-export type FetchHookDataType = null | undefined | TestsType
+export type FetchJSONHookItemsType = null | undefined | TestsType
+
+export type FetchJSONHookSitesType = null | undefined | SitesType
+
+export type FetchJSONHookDataType = null | undefined | SitesType | TestsType
 
 export type ResultsPropsType = {id: string}
 
@@ -42,3 +48,19 @@ export type ResultsViewType = FC<ResultsPropsType>
 export type AppType = FC
 
 export type DashboardViewType = FC
+
+export type TestsTablePropsType = {
+  items: FetchJSONHookItemsType
+  sites: FetchJSONHookSitesType
+}
+
+interface TestsTableRowData extends TestType {
+  site: string
+}
+export type TestsTableRowPropsType = {
+  data: TestsTableRowData
+}
+
+export type TestTableComponentType = FC<TestsTablePropsType>
+
+export type TestTableRowComponentType = FC<TestsTableRowPropsType>
