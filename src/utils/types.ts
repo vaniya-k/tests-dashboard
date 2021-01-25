@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { RouteComponentProps } from "react-router-dom"
 
 export enum SortOrderEnum {
   DEFAULT = 'default',
@@ -16,6 +17,11 @@ export enum SortCategoriesEnum {
 export type SortParamsType = {
   order: null | SortOrderEnum
   category: null | SortCategoriesEnum
+}
+
+export enum DetailsViewEnum {
+  RESULTS,
+  FINALIZE
 }
 
 export enum TypeEnum {
@@ -70,11 +76,11 @@ export type FetchJSONHookItemsType = null | undefined | TestsType
 
 export type FetchJSONHookSitesType = null | undefined | SitesType
 
-export type FetchJSONHookDataType = null | undefined | SitesType | TestsType
+export type FetchJSONHookDataType = null | undefined | SitesType | TestsType | TestType
 
-export type ResultsPropsType = {id: string}
+export type DetailsPropsType = {id: string, mode: DetailsViewEnum}
 
-export type ResultsViewType = FC<ResultsPropsType>
+export type DetailsViewType = FC<DetailsPropsType>
 
 export type AppType = FC
 
@@ -105,3 +111,5 @@ export type TestsTableSortControlTdComponentType = FC<TestsTableSortControlTdPro
 export type TestTableComponentType = FC<TestsTablePropsType>
 
 export type TestTableRowComponentType = FC<TestsTableRowPropsType>
+
+export type RoutePropsType = RouteComponentProps<{testId: string}>

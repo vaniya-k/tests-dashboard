@@ -23,24 +23,27 @@ const Dashboard: DashboardViewType = () => {
     <>
       <header className="page-container page-header">
         <h1 className="page-header__title">Dashboard</h1>
-        <div className="page-header__search-wrapper">
-          <img
-            className="page-header__search-icon"
-            src="./assets/icons/magnifying-glass.svg"
-          />
-          <input
-            type="text"
-            value={filterQuery}
-            className="page-header__search-input"
-            onChange={(e) => setFilterQuery(e.target.value)}
-          />
-          {
-            items &&
-            <span className="page-header__search-results">
-              {itemsToRender.length === 1 ? '1 result' : `${itemsToRender.length} results`}
-            </span>
-          }
-        </div>
+        {
+          (!itemsRequestCycle.isLoading || !sitesRequestCycle.isLoading) &&
+          <div className="page-header__search search-bar">
+            <img
+              className="search-bar__input-icon"
+              src="./assets/icons/magnifying-glass.svg"
+            />
+            <input
+              type="text"
+              value={filterQuery}
+              className="search-bar__input"
+              onChange={(e) => setFilterQuery(e.target.value)}
+            />
+            {
+              items &&
+              <span className="search-bar__input-results">
+                {itemsToRender.length === 1 ? '1 result' : `${itemsToRender.length} results`}
+              </span>
+            }
+          </div>
+        }
       </header>
       <main className="page-container page-main">
         {itemsToRender.length !== 0 && <TestsTable items={itemsToRender}/>}
