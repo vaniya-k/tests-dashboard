@@ -1,7 +1,10 @@
 * {
-  box-sizing: inherit;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: #5c5c5c;
 }
 
 body {
@@ -9,7 +12,6 @@ body {
 }
 
 .page-container {
-  box-sizing: border-box;
   max-width: 1054px;
   margin: 0 auto;
   padding-left: 48px;
@@ -18,6 +20,15 @@ body {
 
 .page-header {
   margin-bottom: 30px;
+
+  &__title {
+    margin: 40px 0;
+
+    color: #222222;
+    line-height: 40px;
+    font-size: 26px;
+    font-family: 'Montserrat', sans-serif;
+  }
 
   &__search-wrapper {
     position: relative;
@@ -38,15 +49,35 @@ body {
   &__search-input {
     width: 100%;
     height: 45px;
+    padding-left: 37px;
   
     border-radius: 15px;
     border: 1px solid #ebebeb;
 
+    font-weight: 400;
+    font-size: 14px;
+
     &:focus {
-      padding-left: 37px;
       outline: none;
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
     }
+  }
+}
+
+.page-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__alert {
+    line-height: 70px;
+    margin-top: 150px;
+    margin-bottom: 37px;
+
+    color: #222222;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
   }
 }
 
@@ -82,7 +113,6 @@ body {
 
   &:hover {
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
   }
 }
 
@@ -95,6 +125,7 @@ body {
 .tests-table__column {
   &-label-icon {
     margin-left: 8px;
+    cursor: pointer;
 
     &--ascending {
       transform: rotate(180deg)
@@ -105,8 +136,18 @@ body {
     display: flex;
   }
 
+  &-label-text {
+    cursor: pointer;
+    color: #777777;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
   &-status {
     width: 14%;
+
+    font-weight: 500;
 
     &--online {
       color: #1bda9d
@@ -121,8 +162,17 @@ body {
     }
   }
 
-  &-name, &-label-name {
-    width: 46%;
+  &-name {
+    width: 40%;
+    padding-left: 15px;
+
+    font-weight: 500;
+    font-size: 13px;
+    color: #474747;
+  }
+  
+  &-label-name {
+    width: 40%;
     padding-left: 15px;
   }
 
@@ -139,8 +189,40 @@ body {
 
   &-link,
   &-label-link {
-    width: 8%;
+    width: 14%;
     text-align: right;
     padding-right: 12px;
+  }
+}
+
+.btn {
+  display: inline-block;
+  width: 95px;
+  height: 30px;
+
+  border: none;
+  border-radius: 10px;
+
+  
+  text-align: center;
+  line-height: 30px;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:focus {
+    background-color: #ff8346;
+    outline: none;
+  }
+
+  &--green {
+    background-color: #1bda9d;
+  }
+
+  &--grey {
+    background-color: #7d7d7d;
   }
 }

@@ -40,10 +40,10 @@ const TestsTableItemRow: TestTableRowComponentType = (props: TestsTableRowPropsT
       {
         StatusUIEnum[data.status] === StatusUIEnum.DRAFT
           ? <td className="tests-table__cell tests-table__column-link">
-              <Link to={`/finalize/${data.id}`}>Finalize</Link>
+              <Link className="btn btn--grey" to={`/finalize/${data.id}`}>Finalize</Link>
             </td>
           : <td className="tests-table__cell tests-table__column-link">
-              <Link to={`/results/${data.id}`}>Results</Link>
+              <Link className="btn btn--green" to={`/results/${data.id}`}>Results</Link>
             </td>
       }
     </tr>
